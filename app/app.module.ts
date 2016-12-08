@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
-import { SensorDisplayComponent } from './components/sensorDisplayComponents';
+import { SensorDisplayComponent } from './components/sensorDisplay.component';
 
 @NgModule({
   imports:      [ BrowserModule ],
