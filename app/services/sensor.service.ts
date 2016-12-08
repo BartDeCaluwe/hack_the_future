@@ -40,8 +40,15 @@ export class SensorService {
     }
 
     getDistanceState() {
-        var url = 'http://192.168.50.149:5000/getTemperatureState';
+        var url = 'http://192.168.50.149:5000/getDistanceState';
         var response = this.http.get(url).map(res => res.json());
         return response;
+    }
+
+    postDistanceState(data:any) {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post('http://192.168.50.149:4000/api/', JSON.stringify(data), { headers })
+            .map(res => res.json());
     }
 }

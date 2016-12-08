@@ -18,6 +18,7 @@ export class SensorDisplayComponent {
     this.getLichtState();
     this.getSoundState();
     this.getTemperatureState();
+    this.getDistance();
     this.repeatCalls();
   }
 
@@ -66,6 +67,7 @@ export class SensorDisplayComponent {
       this.getButtonState();
       this.getLichtState();
       this.getTemperatureState();
+      this.getDistance();
       this.getSoundState();
     }, 3000);
   }
