@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -40,15 +40,18 @@ export class SensorService {
     }
 
     getDistanceState() {
-        var url = 'http://192.168.50.149:5000/getDistanceState';
+        var url = 'http://192.168.50.149:5000/getUltrasoundDistanceState';
         var response = this.http.get(url).map(res => res.json());
         return response;
     }
 
-    postDistanceState(data:any) {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.post('http://192.168.50.149:4000/api/', JSON.stringify(data), { headers })
-            .map(res => res.json());
-    }
+    // postDistanceState(data: any) {
+    //     // {"team": {"id": 6}, "sensor": { "id": "1", "state": "true", "value": "1"}}
+    //     var object: URLSearchParams;
+    //     object.set('team', 'id: 6');
+    //     var headers = new Headers();
+    //     headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    //     return this.http.post('http://192.168.50.148:4000/api/', object, { headers })
+    //         .map(res => res.json());
+    // }
 }

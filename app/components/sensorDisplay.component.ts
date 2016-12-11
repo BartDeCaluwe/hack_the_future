@@ -12,6 +12,8 @@ export class SensorDisplayComponent {
   sound: any;
   temperature: any;
   distance: any;
+  baseDistance: number = 49;
+  distanceOK: boolean = false;
 
   constructor(private sensorService: SensorService) {
     this.getButtonState();
@@ -19,6 +21,7 @@ export class SensorDisplayComponent {
     this.getSoundState();
     this.getTemperatureState();
     this.getDistance();
+    // this.postDistanceState(this.panic);
     this.repeatCalls();
   }
 
@@ -59,16 +62,36 @@ export class SensorDisplayComponent {
       .subscribe(data => {
         console.log(data);
         this.distance = data;
+        this.checkDistance(this.distance.data);
       });
+  }
+
+  // postDistanceState(panic: any) {
+  //   this.sensorService.postDistanceState(panic)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //     });
+  // }
+
+  checkDistance(newDistance:any){
+    var difference = this.baseDistance - newDistance;
+    console.log(difference + " DISTANCE");
+    if(difference < 10){
+      this.distanceOK = false;
+      console.log("BLABLA")
+    } else {
+      this.distanceOK = true;
+    }
+    console.log(this.distanceOK);
   }
 
   repeatCalls() {
     setInterval(() => {
       this.getButtonState();
       this.getLichtState();
+      this.getSoundState();
       this.getTemperatureState();
       this.getDistance();
-      this.getSoundState();
     }, 3000);
   }
 }
