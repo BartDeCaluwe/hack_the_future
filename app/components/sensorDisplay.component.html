@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h1>Status</h1>
+        <div *ngIf="panic?.data == 0">
+            <h2 class="text-success">All ok!</h2>
+        </div>
+        <div *ngIf="panic?.data == 1">
+            <h2 class="text-danger">PANIC!!!!</h2>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <h1>Temperature</h1>
+        <p *ngIf="temperature?.data">
+            {{ temperature?.data }}
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h1>Licht</h1>
+        <p *ngIf="light?.data">
+            sensor value: {{ light?.data[0] }} resistance: {{ light?.data[1] }}
+        </p>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <h1>Sound</h1>
+        <p *ngIf="sound?.data">
+            {{ sound?.data }} dB
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h1>Distance</h1>
+        <p *ngIf="distance?.data">
+            {{ distance?.data }}
+        </p>
+        <p *ngIf="distanceOK" class="text-danger">
+            NIET OKE
+        </p>
+    </div>
+    <div class="col-md-2"></div>
+</div>
