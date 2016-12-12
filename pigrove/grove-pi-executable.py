@@ -1,5 +1,6 @@
 import time
 import grovepi
+import math
 
 import sys
 from flask import Flask, abort, jsonify, request
@@ -77,9 +78,10 @@ def soundSensor():
     # The threshold to turn the led on 400.00 * 5 / 1024 = 1.95v
     threshold_value = 400
     try:
+        # (20 * log10(value + 1) ).
         # Read the sound level
-        sensor_value = grovepi.analogRead(sound_sensor)
-
+        sensor_value = 20 * math.log10(grovepi.analogRead(sound_sensor) + 1)
+        
         # If loud, illuminate LED, otherwise dim
         if sensor_value > threshold_value:
             grovepi.digitalWrite(led,1)
@@ -95,7 +97,7 @@ def soundSensor():
 def temperatureSensor():
     sensor = 0
     try:
-        temp= grovepi.temp(sensor,'1.1')
+        temp= grovepi.temp(sensor,'1.1') - 273.15
         return(temp)
         time.sleep(.5)
     except IOError:
@@ -179,9 +181,9 @@ def getTemperatureState():
     response = jsonify({'data': temperatureSensor()}), 200
     return response
 
-@app.route('/getUltrasoundDistanceSensorState', methods=['GET'])
+@app.route('/getUltrasoundDistanceState', methods=['GET'])
 @crossdomain(origin='*')
-def getUltrasoundDistanceSensorState():
+def getUltrasoundDistanceState():
     response = jsonify({'data': ultrasoundDistanceSensor()}), 200
     return response
 
