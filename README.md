@@ -2,9 +2,13 @@
 
 
 ## Description
+Create a Dashboard to show the measurements (light, sound, distance, temperature, ...) being made on Mars.
+
 Several technologies were allowed to complete this project. We opted for the following:
 
+
 Front-end: Angular2 with Bootstrap
+
 Back-end: Flask running on Raspberry Pi 3
 
 ## Prerequisites to run this project
@@ -12,7 +16,7 @@ Back-end: Flask running on Raspberry Pi 3
 Node.js, npm, fully equipped Raspberry Pi 3 Model B, GrovePI+ with sensors
 
 `npm install` to install the required packages.
-`npm start` to start the front-end server/
+`npm start` to start the front-end server.
 
 Copy `grove-pi-executable.py` in the `pigrove` folder onto your Raspberry Pi's SD card. 
 
